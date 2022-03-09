@@ -1,7 +1,5 @@
 {
-  "name": "eje02",
-  "integrations": {
-    "capacitor": {}
-  },
+  "name": "eje03",
+  "integrations": {},
   "type": "angular"
 }

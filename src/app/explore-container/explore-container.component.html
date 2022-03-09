@@ -1,4 +1,37 @@
 <div id="container">
   <strong>{{ name }}</strong>
-  <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-row>
+    <ion-col>
+        <ion-list>
+        <ion-item *ngIf="name == 'Todas las tareas'" >
+            <ion-input [(ngModel)]="todoValue"  placeholder="Nombre de la tarea"></ion-input>
+            <ion-fab-button (click)="addTodo()" *ngIf="todoValue != ''">
+                <ion-icon name="add"></ion-icon>
+              </ion-fab-button>
+        </ion-item>
+        <ion-col *ngIf="name == 'Todas las tareas'">
+            <ion-item *ngFor="let item of tareas;let indice=index" >
+                <ion-label>{{item}}</ion-label>
+                <ion-fab-button (click)="markASCompleted(indice)" *ngIf="name == 'Todas las tareas'"  color="success" vertical="top" horizontal="end" >
+                  <ion-icon name="checkmark-outline"></ion-icon>
+              </ion-fab-button>              
+                <ion-fab-button color="danger" (click)="removeTodo(indice)" vertical="top" horizontal="end">
+                    <ion-icon name="trash"></ion-icon>
+                </ion-fab-button>
+            </ion-item>
+        </ion-col>            
+        <ion-col *ngIf="name != 'Todas las tareas'">
+            <ion-item *ngFor="let item of tareasCompletas;let indice=index" >
+                <ion-label>{{item}}</ion-label>
+                <ion-fab-button (click)="markASCompleted(indice)" color="warning" vertical="top" horizontal="end" >
+                  <ion-icon name="checkmark-outline"></ion-icon>
+              </ion-fab-button>              
+                <ion-fab-button color="danger" (click)="removeTodo(indice)" vertical="top" horizontal="end">
+                    <ion-icon name="trash"></ion-icon>
+                </ion-fab-button>
+            </ion-item>
+        </ion-col>                    
+        </ion-list>
+    </ion-col>
+</ion-row>
 </div>
